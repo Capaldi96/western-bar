@@ -1,0 +1,33 @@
+.cocktails {
+    width:200px;
+    list-style: none;
+}
+.cocktails li.selected {
+    background-color: darkolivegreen;
+    color: white;
+}
+.cocktails li:hover{
+    cursor: pointer;
+    background-color: rgb(113, 151, 47);
+    color:white;
+}
+.cocktails li.selected:hover {
+    background-color: rgb(113, 151, 47);
+    color: white;
+}
+.cocktails li {
+    margin-bottom:10px;
+    border-radius: 2px;
+}
+.cocktails .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color:darkolivegreen;
+    line-height: 1em;
+    position: relative;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+}

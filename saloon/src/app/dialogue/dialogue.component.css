@@ -1,0 +1,17 @@
+#stranger-div{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin:1em;
+    width:20em;
+    padding:1em;
+}
+#submit{
+    width:10em;
+    margin:0 auto;
+}
+#forgotten{
+    position: absolute;
+    top:5px;
+    right:5px;
+}

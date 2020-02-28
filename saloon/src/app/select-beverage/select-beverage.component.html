@@ -1,0 +1,8 @@
+<div *ngIf="showCocktails" id="cocktails-div">
+    <h2>Available Cocktails</h2>
+    <ul class="cocktails">
+        <li *ngFor="let beverage of beverages" (click)="onSelect(beverage)" [class.selected]="beverage === selectedBeverage">
+            <span class="badge"> {{beverage.id}} </span> {{beverage.name}}
+        </li>
+    </ul>
+</div>
