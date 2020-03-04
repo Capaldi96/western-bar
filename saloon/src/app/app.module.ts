@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { SelectBeverageComponent } from './select-beverage/select-beverage.component';
 import { UsualComponent } from './usual/usual.component';
+import { ForgetComponent } from './forget/forget.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UsualComponent } from './usual/usual.component';
     DialogueComponent,
     SelectBeverageComponent,
     UsualComponent,
+    ForgetComponent,
   ],
   imports: [
     BrowserModule,

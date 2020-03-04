@@ -1,5 +1,5 @@
 import { Beverage } from './../beverage';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { VisitorService } from '../visitor.service';
 
 @Component({
@@ -8,13 +8,16 @@ import { VisitorService } from '../visitor.service';
   styleUrls: ['./select-beverage.component.css']
 })
 export class SelectBeverageComponent implements OnInit {
+  @Output() sendData = new EventEmitter<object>();
   beverages: Beverage[];
   selectedBeverage: Beverage;
-  @Input('parentData') public showCocktails: boolean = false;
-  
-  @Output() sendData = new EventEmitter<object>();
+  cocktailName;
 
-  constructor(private visitorService: VisitorService) { }
+  constructor(private visitorService: VisitorService) {
+  }
+  ngOnInit(): void {
+    this.getBeverages();
+  }
 
   onSelect(beverage:Beverage): void{
     this.visitorService.setLastDrink(beverage);
@@ -22,14 +25,15 @@ export class SelectBeverageComponent implements OnInit {
     this.sendData.emit(beverage);
   }
   getBeverages():void{
-    this.beverages = this.visitorService.getDrinks();
+    this.beverages = this.visitorService.getDrinkList();
   }
-
-  ngOnInit(): void {
-    this.getBeverages();
-    if(this.visitorService.getFirstName() !== null){
-      this.showCocktails = true;
+  addCocktail(){
+    let newCocktail = {
+      name:this.cocktailName,
     }
+    this.beverages.push(newCocktail);
+    this.visitorService.setDrinkList(this.beverages);
+    
   }
 
 }

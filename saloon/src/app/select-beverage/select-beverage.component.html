@@ -1,8 +1,10 @@
-<div *ngIf="showCocktails" id="cocktails-div">
+<div id="cocktails-div">
     <h2>Available Cocktails</h2>
-    <ul class="cocktails">
-        <li *ngFor="let beverage of beverages" (click)="onSelect(beverage)" [class.selected]="beverage === selectedBeverage">
-            <span class="badge"> {{beverage.id}} </span> {{beverage.name}}
+    <input [(ngModel)]="cocktailName" type="text" placeholder="Cocktail name..." id="newCocktail"/>
+    <button [disabled]="!cocktailName" type="submit" (click)="addCocktail()">Add Cocktail</button>
+    <ul class="cocktails" id="ulList">
+        <li *ngFor="let beverage of beverages; let i = index;" (click)="onSelect(beverage)" [class.selected]="beverage === selectedBeverage">
+            <span class="badge">{{i+1}}</span> {{beverage.name}}
         </li>
     </ul>
 </div>

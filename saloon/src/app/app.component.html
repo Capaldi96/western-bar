@@ -1,1 +1,2 @@
-<app-dialogue></app-dialogue>
+<app-dialogue [messageData]="parentMessage"></app-dialogue>
+<app-forget (deleteCustomer)="messageFromChild($event)"></app-forget>

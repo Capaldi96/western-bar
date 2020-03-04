@@ -1,9 +1,7 @@
+import { Message } from './../message';
 import { Beverage } from './../beverage';
 import { Component, OnInit, Input } from '@angular/core';
 import { VisitorService } from '../visitor.service';
-
-
-
 
 @Component({
   selector: 'app-dialogue',
@@ -11,48 +9,42 @@ import { VisitorService } from '../visitor.service';
   styleUrls: ['./dialogue.component.css']
 })
 export class DialogueComponent implements OnInit {
+  @Input() messageData: Message;  
   firstname: string;
   lastname: string;
-  message:string;
   data:Beverage;
-  selectedDrink;
-  showStrangerDiv:boolean = true;
-  showCocktails:boolean;
+  selectedDrink: Beverage;
   showUsual:boolean;
   constructor(private visitorService: VisitorService) { }
   ngOnInit(): void {
     // NOT STRANGER
-    if(localStorage.getItem('firstname') !== null && localStorage.getItem('lastname') !== null){
-      this.showStrangerDiv = false;
-      this.showUsual = true;
+    if(this.visitorService.getDrinkList() == null)
+      this.visitorService.setDrinkList(this.visitorService.getDrinks());
+    if(this.visitorService.getFirstName() !== null && this.visitorService.getLastName() !== null){
       this.firstname = this.visitorService.getFirstName();
       this.lastname = this.visitorService.getLastName();
-      this.message = 'Hello again, '+ this.firstname + ' ' + this.lastname +'! The usual?';
+      this.messageData.message = 'Hello again, '+ this.firstname + ' ' + this.lastname +'! The usual?';
+      document.getElementById("cocktails-div").style.visibility = "visible";
     }
     else{
       // STRANGER
-      this.showStrangerDiv = true;
-      this.message = 'Howdy, stranger. Haven\'t seen your face around here before. What\'s your name?';
+      this.showUsual = false;
+      this.messageData.message = 'Howdy, stranger. Haven\'t seen your face around here before. What\'s your name?';
     }
   }
-  forgetCustomer(){
-    this.visitorService.removeInfo();
-    this.message = 'Who are you again??';
-    this.showStrangerDiv = true;
-    this.showUsual = false;
-    this.showCocktails = false;
-  }
+
   drinkSelected(drink){
-    this.message = 'One ' + drink.name + ', coming right up!';
+    this.messageData.message = 'One ' + drink.name + ', coming right up!';
   }
   theUsualSelected(drink){
-    this.message = 'One ' + drink + ', coming right up!';
+    this.messageData.message = 'The usual! One ' + drink + ', coming right up!';
   }
   submitNames() {
+    if(this.visitorService.getDrinkList() == null)
+      this.visitorService.setDrinkList(this.visitorService.getDrinks());
     this.visitorService.setName(this.firstname,this.lastname);
-    this.showCocktails = true;
-    this.showStrangerDiv = false;
-    this.message = 'Alright '+ this.firstname + ' ' + this.lastname +', what can i do you for?';
+    this.messageData.message = 'Alright '+ this.firstname + ' ' + this.lastname +', what can i do you for?';
+    document.getElementById("cocktails-div").style.visibility = "visible";
   }
 
 

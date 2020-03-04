@@ -18,7 +18,7 @@ export class UsualComponent implements OnInit {
     this.sendUsualData.emit(this.lastDrink);
   }
   ngOnInit(): void {
-    if(this.visitorService.getFirstName() !== null){
+    if(this.visitorService.getLastDrink() !== null){
       this.showUsual = true;
     }
   }

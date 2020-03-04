@@ -1,11 +1,10 @@
 <div class="">
-<p> {{message}} </p>
-    <div *ngIf="showStrangerDiv" id="stranger-div">
-        <input [(ngModel)]="firstname" type="text" placeholder="First Name..."/> <br>
-        <input [(ngModel)]="lastname" type="text" placeholder="Last Name..."/> <br>
-        <input type="submit" id="submit" (click)="submitNames()">
+<p> {{messageData.message}} </p>
+    <div id="stranger-div">
+        <input [(ngModel)]="firstname" type="text" placeholder="First Name..." id="firstname"/> <br>
+        <input [(ngModel)]="lastname" type="text" placeholder="Last Name..." id="lastname"/> <br>
+        <input [disabled]="!firstname || !lastname" type="submit" id="submit" (click)="submitNames()">
     </div>
 </div>
-<button (click)="forgetCustomer()" id="forgotten">I was never here</button>
-<app-select-beverage [parentData]="showCocktails" (sendData)="drinkSelected($event)"></app-select-beverage>
+<app-select-beverage (sendData)="drinkSelected($event)"></app-select-beverage>
 <app-usual [parentData]="showUsual" (sendUsualData)="theUsualSelected($event)"></app-usual>

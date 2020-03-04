@@ -26,10 +26,14 @@ export class VisitorService {
   setLastDrink(drink): void {
     localStorage.setItem('lastdrink', drink.name);
   }
+  setDrinkList(listOfDrinks):void{
+    localStorage.setItem('listOfDrinks', JSON.stringify(listOfDrinks));
+  }
+  getDrinkList(){
+    return JSON.parse(localStorage.getItem('listOfDrinks'));
+  }
   removeInfo():void{
     localStorage.clear();
-  }
-    
-  
+  }  
   constructor() { }
 }

@@ -1,3 +1,6 @@
+#cocktails-div{
+    visibility: hidden;
+}
 .cocktails {
     width:200px;
     list-style: none;
